@@ -1,0 +1,22 @@
+<form [formGroup]="form">
+  <div class="container">
+    <fieldset>
+      <legend>Login</legend>
+      <div class="form-field">
+        <label for="email"><b>Email:</b></label>
+        <input name="email" formControlName="email"
+        type="text" required>
+      </div>
+      <div class="form-field">
+        <label for="password"><b>Password:</b></label>
+        <input name="password" formControlName="password"
+        type="password" required>
+      </div>
+    </fieldset>
+    <div class="form-buttons">
+      <button class="button button-primary"
+      (click)="login()">Login</button>
+    </div>
+    <p>*Falta implementar mensajes de error</p>
+  </div>
+</form>
