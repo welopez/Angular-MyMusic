@@ -19,8 +19,8 @@ export class SongService {
     return this.http.get<Song[]>(`${environment.apiUrl}/songs`)
   }
 
-  getSongsByAuthor(author: string): Observable<Song> {
-    return this.http.get<Song>(`${environment.apiUrl}/songs?author=${author}`)
+  getSongsByAuthor(author: string): Observable<Song[]> {
+    return this.http.get<Song[]>(`${environment.apiUrl}/songs?author=${author}`)
   }
 
 }

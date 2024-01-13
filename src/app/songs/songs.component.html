@@ -1,11 +1,25 @@
-<div class="col">
-  <h2>Canciones</h2>
-  <hr>
+<div class="row">
+  <div class="col">
+    <h2>Canciones</h2>
+  </div>
+  <form [formGroup]="form" class="col-auto mt-2" (ngSubmit)="getSongsByAuthor()">
+    <div class="row form-group">
+      <div class="input-group">
+        <input name="authorName" title="Busqueda por autor" formControlName="authorName" type="text" placeholder="Buscar por autor" class="form-control" aria-describedby="basic-addon1">
+        <div class="input-group-append btn-group">
+          <button *ngIf="limpiarFiltro" type="button" title="Limpiar filtros" class="btn btn-danger rounded-0 align-self-start" (click)="getSongs()"><b>X</b></button>
+          <button type="submit" class="btn btn-dark align-self-start">Buscar</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
+
+<hr class="mt-2">
 
 <div *ngIf="songs && songs.length > 0">
   <table class="table table-striped">
-    <thead>
+    <thead class="table-dark">
       <tr>
         <th>Cancion</th>
         <th>Autor</th>
@@ -22,7 +36,7 @@
           <div class="dropdown">
             <button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"></button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li><h6 class="dropdown-header">Agregar a playlist:</h6></li>
+              <li><h6 class="dropdown-header"><u>Agregar a playlist:</u></h6></li>
               <li *ngFor="let playlist of playlists">
                 <button class="dropdown-item" [ngClass]="{'disabled': isSongInPlaylist(song.id, playlist)}" type="button" (click)="addSong(song.id, playlist.id)">
                   {{playlist.name}}

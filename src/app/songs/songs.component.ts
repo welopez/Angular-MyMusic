@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Playlist } from '@app/playlist';
 import { PlaylistService } from '@app/playlist.service';
 import { Song } from '@app/song';
@@ -13,10 +14,15 @@ export class SongsComponent implements OnInit {
   songs: Song[] = [];
   playlists: Playlist[] = [];
   userEmail: String;
+  form: FormGroup;
+  limpiarFiltro: Boolean = false;
   errorMessage: string | null = null;
 
-  constructor(private playlistService: PlaylistService, private songService: SongService) {
+  constructor(private playlistService: PlaylistService, private songService: SongService, private fb: FormBuilder) {
     this.userEmail = localStorage.getItem('user_email') ?? '';
+    this.form = this.fb.group({
+      authorName: [""]
+    });
   }
 
   ngOnInit(): void {
@@ -32,6 +38,21 @@ export class SongsComponent implements OnInit {
 
   getSongs(): void {
     this.songService.getSongs().subscribe(songs => this.songs = songs, error => this.errorMessage = error.message);
+    this.form.get('authorName')?.setValue('');
+    this.limpiarFiltro = false;
+  }
+
+  getSongsByAuthor(): void {
+    if (this.form.valid) {
+      const authorName = this.form.get('authorName')?.value;
+      console.log("authorName:" + authorName);
+      if (authorName == null || authorName == ""){
+        this.getSongs();
+      }else{
+        this.songService.getSongsByAuthor(authorName).subscribe(songs => this.songs = songs, error => this.errorMessage = error.message);
+        this.limpiarFiltro = true;
+      }
+    }
   }
 
   addSong(songId: DoubleRange, playlistId: DoubleRange): void {
