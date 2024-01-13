@@ -1,22 +1,31 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="login()">
   <div class="container">
+
+    <div class="text-center m-3">
+      <h2>Login</h2>
+    </div>
+
     <fieldset>
-      <legend>Login</legend>
-      <div class="form-field">
+      <div class="form-field mt-3">
         <label for="email"><b>Email:</b></label>
-        <input name="email" formControlName="email"
-        type="text" required>
+        <input name="email" title="email" formControlName="email" type="text" required>
+        <div *ngIf="form.get('email')?.invalid && (form.get('email')?.touched || formSubmitted)" class="error-message">
+          {{ getErrorMessage('email') }}
+        </div>
       </div>
-      <div class="form-field">
+      <div class="form-field mt-3">
         <label for="password"><b>Password:</b></label>
-        <input name="password" formControlName="password"
-        type="password" required>
+        <input name="password" title="contraseña" formControlName="password" type="password" required>
+        <div *ngIf="form.get('password')?.invalid && (form.get('password')?.touched || formSubmitted)" class="error-message">
+          {{ getErrorMessage('password') }}
+        </div>
       </div>
     </fieldset>
     <div class="form-buttons">
-      <button class="button button-primary"
-      (click)="login()">Login</button>
+      <button type="submit" class="btn btn-success mt-4">Login</button>
     </div>
-    <p>*Falta implementar mensajes de error</p>
+    <div *ngIf="errorMessage" class="text-center error-message m-3">
+      {{ errorMessage }}
+    </div>
   </div>
 </form>

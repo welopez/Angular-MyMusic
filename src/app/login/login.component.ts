@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   returnUrl: string;
+  formSubmitted = false;
+  errorMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -34,12 +36,32 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Añadir validadores para los campos requeridos
+    this.form.get('email')?.setValidators([Validators.required, Validators.email]);
+    this.form.get('password')?.setValidators([Validators.required]);
+  }
 
+  // Método para obtener mensajes de error
+  getErrorMessage(controlName: string): string {
+    const control = this.form.get(controlName);
+
+    if (control?.hasError('required')) {
+      return 'Este campo es requerido.';
+    }
+
+    if (control?.hasError('email')) {
+      return 'Ingrese un correo electrónico válido.';
+    }
+
+    return '';
   }
 
   login() {
+    this.formSubmitted = true; // Set the flag to true when the form is submitted
+
     // stop here if form is invalid
     if (this.form.invalid) {
+
       return;
     }
     const val = this.form.value;
@@ -51,6 +73,10 @@ export class LoginComponent implements OnInit {
           console.log("User is logged in");
           this.router.navigate([this.returnUrl]);
           //this.router.navigateByUrl('/');
+        },
+        error => {
+          console.error("Error al iniciar sesión:", error);
+          this.errorMessage = "Error al iniciar sesión. Por favor, verifica tus credenciales.";
         }
       );
     }

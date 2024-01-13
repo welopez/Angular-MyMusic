@@ -1,0 +1,47 @@
+<div class="col">
+  <h2>Canciones</h2>
+  <hr>
+</div>
+
+<div *ngIf="songs && songs.length > 0">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Cancion</th>
+        <th>Autor</th>
+        <th>Genero</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let song of songs">
+        <td>{{ song.name }}</td>
+        <td>{{ song.author }}</td>
+        <td>{{ song.genre }}</td>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"></button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><h6 class="dropdown-header">Agregar a playlist:</h6></li>
+              <li *ngFor="let playlist of playlists">
+                <button class="dropdown-item" [ngClass]="{'disabled': isSongInPlaylist(song.id, playlist)}" type="button" (click)="addSong(song.id, playlist.id)">
+                  {{playlist.name}}
+                </button>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="!songs || songs.length === 0" class="my-3">
+  <div class="alert alert-secondary text-center">
+    <b>No hay canciones disponibles.</b>
+  </div>
+</div>
+
+<div *ngIf="errorMessage" class="error-message my-3">
+  {{ errorMessage }}
+</div>

@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.error-message {
+  color: red; /* Color del texto del mensaje de error */
+  font-size: 14px; /* Tamaño del texto del mensaje de error */
+  margin-top: 5px; /* Espacio superior entre el campo y el mensaje de error */
+}

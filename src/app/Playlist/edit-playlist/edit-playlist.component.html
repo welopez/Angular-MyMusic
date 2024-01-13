@@ -1,0 +1,72 @@
+<div *ngIf="playlist">
+  <div class="row">
+
+    <div *ngIf="!cambioNombre" class="col-auto">
+      <h2 (click)="iniciarCambioNombre()">{{ playlist.name }}</h2>
+    </div>
+
+    <form *ngIf="cambioNombre" [formGroup]="form" class="col-auto mt-2" (ngSubmit)="changeName()">
+      <div class="row form-group">
+        <div class="input-group">
+          <input #playlistNameInput name="playlistName" title="Nombre Playlist" formControlName="playlistName" type="text" placeholder="{{playlist.name}}" class="form-control" aria-describedby="basic-addon1" value="playlist.name" (blur)="onInputBlur()" required>
+          <!-- <div class="input-group-append">
+            <button type="submit" title="guardar cambios" class="btn btn-success align-self-start">Guardar</button>
+          </div> -->
+        </div>
+        <div *ngIf="form.get('playlistName')?.invalid && (form.get('playlistName')?.touched || formSubmitted)" class="error-message">
+          {{ getErrorMessage('playlistName') }}
+        </div>
+      </div>
+    </form>
+
+    <div *ngIf="puedeEditar()" class="col-auto d-flex align-items-center">
+      <div class="dropdown">
+        <button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false"></button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+          <li><button class="dropdown-item" type="button" (click)="iniciarCambioNombre()">Cambiar nombre</button></li>
+          <li><button class="dropdown-item" type="button" (click)="deletePlaylist()">Eliminar playlist</button></li>
+        </ul>
+      </div>
+
+      <!-- <button type="button" name="button" class="btn btn-sm btn-danger" (click)="deletePlaylist()">Eliminar</button> -->
+    </div>
+
+  </div>
+  <hr class="mt-2">
+
+  <div *ngIf="playlist.songs && playlist.songs.length > 0">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Cancion</th>
+          <th>Autor</th>
+          <th>Genero</th>
+          <th *ngIf="puedeEditar()"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let song of playlist.songs">
+          <td>{{ song.name }}</td>
+          <td>{{ song.author }}</td>
+          <td>{{ song.genre }}</td>
+          <td *ngIf="puedeEditar()" class="text-center"><button type="button" name="button" class="btn btn-sm btn-danger" (click)="deleteSong(song.id)">Eliminar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!playlist.songs || playlist.songs.length === 0" class="my-3">
+    <div class="alert alert-secondary text-center">
+      <b>La playlist está vacía.</b>
+    </div>
+  </div>
+
+  <div *ngIf="puedeEditar()" class="form-buttons">
+    <button type="button" (click)="goToSongs()" class="btn btn-success mt-4">Agregar Canciónes</button>
+  </div>
+
+</div>
+
+<div *ngIf="errorMessage" class="error-message my-3">
+  {{ errorMessage }}
+</div>

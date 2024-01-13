@@ -5,15 +5,21 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { PlaylistsComponent } from './playlists/playlists.component';
+import { PlaylistsComponent } from './Playlist/playlists/playlists.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './auth.interceptor';
+import { AddPlaylistComponent } from './Playlist/add-playlist/add-playlist.component';
+import { EditPlaylistComponent } from './Playlist/edit-playlist/edit-playlist.component';
+import { SongsComponent } from './songs/songs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PlaylistsComponent
+    PlaylistsComponent,
+    AddPlaylistComponent,
+    EditPlaylistComponent,
+    SongsComponent
   ],
   imports: [
     BrowserModule,

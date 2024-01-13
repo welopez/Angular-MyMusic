@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Playlist } from '@app/playlist';
 import { PlaylistService } from '@app/playlist.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-playlists',
@@ -10,8 +11,9 @@ import { PlaylistService } from '@app/playlist.service';
 export class PlaylistsComponent implements OnInit {
 
   playlists: Playlist[] = [];
+  errorMessage: string | null = null;
 
-  constructor(private playlistService: PlaylistService) { }
+  constructor(private playlistService: PlaylistService, private router: Router) { }
 
   ngOnInit(): void {
     this.getPlaylists();
@@ -19,6 +21,14 @@ export class PlaylistsComponent implements OnInit {
 
   getPlaylists(): void {
     this.playlistService.getPlaylists().subscribe(playlists => this.playlists = playlists);
+  }
+
+  goToPlaylist(id: DoubleRange) {
+    this.router.navigateByUrl(`/playlists/${id}`);
+  }
+
+  addPlaylist(): void {
+    this.router.navigateByUrl('/playlists/new');
   }
 
 }

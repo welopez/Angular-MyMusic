@@ -1,0 +1,33 @@
+<div class="col">
+  <h2>PlayLists</h2>
+  <hr>
+</div>
+
+<table *ngIf="playlists && playlists.length > 0" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Creador</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let playlist of playlists" (click)="goToPlaylist(playlist.id)" class="table-row-hover">
+      <td>{{ playlist.name }}</td>
+      <td>{{ playlist.userEmail }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!playlists || playlists.length === 0" class="my-3">
+  <div class="alert alert-secondary text-center">
+    <b>No hay playlists disponibles.</b>
+  </div>
+</div>
+
+<div class="form-buttons">
+  <button type="button" (click)="addPlaylist()" class="btn btn-success mt-4">Crear Playlist</button>
+</div>
+
+<div *ngIf="errorMessage" class="error-message my-3">
+  {{ errorMessage }}
+</div>
