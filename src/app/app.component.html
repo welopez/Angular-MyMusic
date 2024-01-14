@@ -20,10 +20,9 @@
           <div class="dropdown col-auto p-0 d-flex align-items-center">
             <span class="dropdown-toggle navbar-text my-auto user" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false"><fa-icon [icon]="faUser"></fa-icon> {{ userEmail }}</span>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-              <li><button class="dropdown-item" type="button" ><fa-icon [icon]="faSalir" class="text-danger"></fa-icon> Cerrar Sesión</button></li>
+              <li><button class="dropdown-item" type="button" (click)="logout()"><fa-icon [icon]="faSalir" class="text-danger"></fa-icon> Cerrar Sesión</button></li>
             </ul>
           </div>
-
         </div>
 
       </div>
