@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 import { Subscription } from 'rxjs';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faCircleUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +14,8 @@ export class AppComponent implements OnDestroy {
   userEmail: string;
   private isLoggedInSubscription: Subscription;
   faCoffee = faCoffee;
+  faUser = faCircleUser;
+  faSalir = faRightFromBracket;
 
   constructor(
     private router: Router,

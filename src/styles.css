@@ -14,3 +14,8 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.boton-redondo {
+    border-radius: 12px;
+    height: 25px;
+}

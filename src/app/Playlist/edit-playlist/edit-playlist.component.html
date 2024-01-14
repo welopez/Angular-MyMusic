@@ -21,7 +21,7 @@
 
     <div *ngIf="puedeEditar()" class="col-auto d-flex align-items-center">
       <div class="dropdown">
-        <button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false"></button>
+        <button class="btn btn-sm btn-dark dropdown-toggle boton-redondo" type="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false"></button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
           <li><button class="dropdown-item" type="button" (click)="iniciarCambioNombre()"><fa-icon [icon]="faPen" class="text-dark"></fa-icon> Cambiar nombre</button></li>
           <li><button class="dropdown-item" type="button" (click)="deletePlaylist()"><fa-icon [icon]="faTrash" class="text-danger"></fa-icon> Eliminar playlist</button></li>

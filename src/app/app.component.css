@@ -1,0 +1,33 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f9f9f9;
+}
+
+#navbar {
+  flex: 0 0 auto; /* Navbar no se expandirá */
+}
+
+#content {
+  flex: 1 1 auto; /* El contenido se expandirá para ocupar el espacio restante */
+  overflow-y: auto; /* Añadir scroll si el contenido es más largo que la altura de la ventana */
+}
+
+#footer {
+  flex: 0 0 auto; /* Pie de página no se expandirá */
+}
+
+.user {
+  cursor: pointer;
+}
+
+.user:hover {
+  color: rgb(255 255 255 / 75%);
+}
