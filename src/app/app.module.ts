@@ -11,6 +11,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { AddPlaylistComponent } from './Playlist/add-playlist/add-playlist.component';
 import { EditPlaylistComponent } from './Playlist/edit-playlist/edit-playlist.component';
 import { SongsComponent } from './songs/songs.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SongsComponent } from './songs/songs.component';
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    FontAwesomeModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

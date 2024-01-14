@@ -4,6 +4,7 @@ import { Playlist } from '@app/playlist';
 import { PlaylistService } from '@app/playlist.service';
 import { Song } from '@app/song';
 import { SongService } from '@app/song.service';
+import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-songs',
@@ -17,6 +18,8 @@ export class SongsComponent implements OnInit {
   form: FormGroup;
   limpiarFiltro: Boolean = false;
   errorMessage: string | null = null;
+  faSearch = faMagnifyingGlass;
+  faXmark = faXmark;
 
   constructor(private playlistService: PlaylistService, private songService: SongService, private fb: FormBuilder) {
     this.userEmail = localStorage.getItem('user_email') ?? '';

@@ -1,22 +1,30 @@
-<div id="div-header" *ngIf="isLoggedIn()">
-  <h1>{{ title }}</h1>
-  <p>{{ userEmail }}</p>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/"><h3>My Music</h3></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/playlists">Playlists</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/songs">Canciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="logout()">Salir</a>
+        </li>
+      </ul>
+      <span class="navbar-text ms-auto">
+        {{ userEmail }}
+      </span>
+    </div>
+  </div>
+</nav>
 
-  <nav>
-    <ul>
-      <li>
-        <a class="nav-item nav-link" routerLink="/songs">Songs</a>
-      </li>
-      <li>
-        <a class="nav-item nav-link" routerLink="/playlists">Playlists</a>
-      </li>
-      <li>
-        <a class="nav-item nav-link" href="#" (click)="logout()">Logout</a>
-      </li>
-    </ul>
-  </nav>
-</div>
-
-<div class="container">
+<!-- Contenido -->
+<div class="container mt-3">
   <router-outlet></router-outlet>
 </div>

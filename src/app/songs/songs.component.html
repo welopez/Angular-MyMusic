@@ -7,8 +7,8 @@
       <div class="input-group">
         <input name="authorName" title="Busqueda por autor" formControlName="authorName" type="text" placeholder="Buscar por autor" class="form-control" aria-describedby="basic-addon1">
         <div class="input-group-append btn-group">
-          <button *ngIf="limpiarFiltro" type="button" title="Limpiar filtros" class="btn btn-danger rounded-0 align-self-start" (click)="getSongs()"><b>X</b></button>
-          <button type="submit" class="btn btn-dark align-self-start">Buscar</button>
+          <button *ngIf="limpiarFiltro" type="button" title="Limpiar filtros" class="btn btn-danger rounded-0 align-self-start" (click)="getSongs()"><fa-icon [icon]="faXmark"></fa-icon></button>
+          <button type="submit" class="btn btn-dark align-self-start rounded-0 rounded-end"><fa-icon [icon]="faSearch"></fa-icon></button>
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
 <hr class="mt-2">
 
 <div *ngIf="songs && songs.length > 0">
-  <table class="table table-striped">
+  <table class="table table-hover table-striped">
     <thead class="table-dark">
       <tr>
         <th>Cancion</th>
@@ -28,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let song of songs">
+      <tr *ngFor="let song of songs" class="table-row-hover">
         <td>{{ song.name }}</td>
         <td>{{ song.author }}</td>
         <td>{{ song.genre }}</td>
@@ -36,7 +36,8 @@
           <div class="dropdown">
             <button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"></button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li><h6 class="dropdown-header"><u>Agregar a playlist:</u></h6></li>
+              <li class="dropdown-header"><b>Agregar a playlist:</b></li>
+              <hr class="m-0">
               <li *ngFor="let playlist of playlists">
                 <button class="dropdown-item" [ngClass]="{'disabled': isSongInPlaylist(song.id, playlist)}" type="button" (click)="addSong(song.id, playlist.id)">
                   {{playlist.name}}

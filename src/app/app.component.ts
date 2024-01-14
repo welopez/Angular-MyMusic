@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 import { Subscription } from 'rxjs';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent implements OnDestroy {
   title = 'My Music';
   userEmail: string;
   private isLoggedInSubscription: Subscription;
+  faCoffee = faCoffee;
 
   constructor(
     private router: Router,

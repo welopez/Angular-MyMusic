@@ -4,6 +4,7 @@ import { Playlist } from '@app/playlist';
 import { PlaylistService } from '@app/playlist.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { faTrashCan, faPenToSquare, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-edit-playlist',
@@ -18,6 +19,9 @@ export class EditPlaylistComponent implements OnInit {
   formSubmitted = false;
   errorMessage: string | null = null;
   @ViewChild('playlistNameInput', { static: false }) playlistNameInput!: ElementRef;
+  faTrash = faTrashCan;
+  faPen = faPenToSquare;
+  faPlus = faPlus;
 
   constructor(
     private route: ActivatedRoute,

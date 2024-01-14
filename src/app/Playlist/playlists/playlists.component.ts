@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Playlist } from '@app/playlist';
 import { PlaylistService } from '@app/playlist.service';
 import { Router } from '@angular/router';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-playlists',
@@ -12,6 +13,7 @@ export class PlaylistsComponent implements OnInit {
 
   playlists: Playlist[] = [];
   errorMessage: string | null = null;
+  faPlus = faPlus;
 
   constructor(private playlistService: PlaylistService, private router: Router) { }
 
@@ -29,6 +31,21 @@ export class PlaylistsComponent implements OnInit {
 
   addPlaylist(): void {
     this.router.navigateByUrl('/playlists/new');
+  }
+
+  handleHover(event: MouseEvent): void {
+    const targetElement = event.currentTarget as HTMLElement;
+    const imgElement = targetElement.querySelector('.card-img') as HTMLImageElement;
+
+    imgElement.style.opacity = '0.3';
+  }
+
+  handleMouseOut(event: MouseEvent): void {
+    const targetElement = event.currentTarget as HTMLElement;
+    const imgElement = targetElement.querySelector('.card-img') as HTMLImageElement;
+
+    imgElement.style.opacity = '0.6';
+    imgElement.style.transition = 'opacity 0.3s ease';
   }
 
 }

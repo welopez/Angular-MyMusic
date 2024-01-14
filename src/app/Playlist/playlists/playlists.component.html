@@ -1,31 +1,32 @@
-<div class="col">
-  <h2>PlayLists</h2>
-  <hr>
+<div class="row">
+  <div class="col">
+    <h2>PlayLists</h2>
+  </div>
+  <div class="col-auto form-buttons">
+    <button type="button" (click)="addPlaylist()" class="btn btn-outline-success mt-2"><fa-icon [icon]="faPlus"></fa-icon><b> Nueva Playlist</b></button>
+  </div>
 </div>
+<hr class="mt-2">
 
-<table *ngIf="playlists && playlists.length > 0" class="table table-striped">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Creador</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let playlist of playlists" (click)="goToPlaylist(playlist.id)" class="table-row-hover">
-      <td>{{ playlist.name }}</td>
-      <td>{{ playlist.userEmail }}</td>
-    </tr>
-  </tbody>
-</table>
+<div *ngIf="playlists && playlists.length > 0" class="row">
+
+  <div *ngFor="let playlist of playlists" class="col-12 col-sm-6 col-lg-4 pb-4">
+    <div class="card bg-dark text-white cursor-pointer" (mouseover)="handleHover($event)" (mouseout)="handleMouseOut($event)" (click)="goToPlaylist(playlist.id)">
+      <img src="assets/images/vinil.png" class="card-img" alt="Vinilo" style="opacity: 0.6;">
+      <div class="card-img-overlay d-flex flex-column">
+        <h4 class="card-title">{{ playlist.name }}</h4>
+        <p class="card-text">{{playlist.songs.length}} canciones</p>
+        <p class="card-text mt-auto">{{ playlist.userEmail }}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 <div *ngIf="!playlists || playlists.length === 0" class="my-3">
   <div class="alert alert-secondary text-center">
     <b>No hay playlists disponibles.</b>
   </div>
-</div>
-
-<div class="form-buttons">
-  <button type="button" (click)="addPlaylist()" class="btn btn-success mt-4">Crear Playlist</button>
 </div>
 
 <div *ngIf="errorMessage" class="error-message my-3">

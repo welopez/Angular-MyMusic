@@ -23,8 +23,8 @@
       <div class="dropdown">
         <button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false"></button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-          <li><button class="dropdown-item" type="button" (click)="iniciarCambioNombre()">Cambiar nombre</button></li>
-          <li><button class="dropdown-item" type="button" (click)="deletePlaylist()">Eliminar playlist</button></li>
+          <li><button class="dropdown-item" type="button" (click)="iniciarCambioNombre()"><fa-icon [icon]="faPen" class="text-dark"></fa-icon> Cambiar nombre</button></li>
+          <li><button class="dropdown-item" type="button" (click)="deletePlaylist()"><fa-icon [icon]="faTrash" class="text-danger"></fa-icon> Eliminar playlist</button></li>
         </ul>
       </div>
 
@@ -35,7 +35,7 @@
   <hr class="mt-2">
 
   <div *ngIf="playlist.songs && playlist.songs.length > 0">
-    <table class="table table-striped">
+    <table class="table table-hover table-striped">
       <thead class="table-dark">
         <tr>
           <th>Cancion</th>
@@ -49,7 +49,7 @@
           <td>{{ song.name }}</td>
           <td>{{ song.author }}</td>
           <td>{{ song.genre }}</td>
-          <td *ngIf="puedeEditar()" class="text-center"><button type="button" name="button" class="btn btn-sm btn-danger" (click)="deleteSong(song.id)">Eliminar</button></td>
+          <td *ngIf="puedeEditar()" class="text-center"><button type="button" name="button" class="btn btn-sm btn-danger" (click)="deleteSong(song.id)" title="Eliminar canción"><fa-icon [icon]="faTrash" title="Eliminar canción"></fa-icon></button></td>
         </tr>
       </tbody>
     </table>
@@ -62,7 +62,7 @@
   </div>
 
   <div *ngIf="puedeEditar()" class="form-buttons">
-    <button type="button" (click)="goToSongs()" class="btn btn-success mt-4">Agregar Canciónes</button>
+    <button type="button" (click)="goToSongs()" class="btn btn-outline-success mt-4 mb-2"><fa-icon [icon]="faPlus"></fa-icon><b> Agregar Canciones</b></button>
   </div>
 
 </div>
