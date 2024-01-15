@@ -23,11 +23,3 @@ body, html {
 #footer {
   flex: 0 0 auto; /* Pie de página no se expandirá */
 }
-
-.user {
-  cursor: pointer;
-}
-
-.user:hover {
-  color: rgb(255 255 255 / 75%);
-}

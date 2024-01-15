@@ -11,7 +11,7 @@ import { faCoffee, faCircleUser, faRightFromBracket } from '@fortawesome/free-so
 })
 export class AppComponent implements OnDestroy {
   title = 'My Music';
-  userEmail: string;
+  userEmail: string | null = null;
   private isLoggedInSubscription: Subscription;
   faCoffee = faCoffee;
   faUser = faCircleUser;
@@ -21,11 +21,11 @@ export class AppComponent implements OnDestroy {
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
-    this.userEmail = localStorage.getItem('user_email') ?? '';
+    this.userEmail = localStorage.getItem('user_email');
     this.isLoggedInSubscription = this.authenticationService.isLoggedIn$.subscribe(
       (isLoggedIn) => {
         if (isLoggedIn) {
-          this.userEmail = localStorage.getItem('user_email') ?? '';
+          this.userEmail = localStorage.getItem('user_email');
         }
       }
     );
@@ -41,6 +41,7 @@ export class AppComponent implements OnDestroy {
 
   logout() {
     this.authenticationService.logout();
+    this.userEmail = null;
     this.router.navigate(['/login']);
   }
 }

@@ -2,7 +2,7 @@
   <div class="col">
     <h2>Canciones</h2>
   </div>
-  <form [formGroup]="form" class="col-auto mt-2" (ngSubmit)="getSongsByAuthor()">
+  <form [formGroup]="form" class="col-12 col-sm-auto mt-2" (ngSubmit)="getSongsByAuthor()">
     <div class="row form-group">
       <div class="input-group">
         <input name="authorName" title="Busqueda por autor" formControlName="authorName" type="text" placeholder="Buscar por autor" class="form-control" aria-describedby="basic-addon1">
