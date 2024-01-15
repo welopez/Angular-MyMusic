@@ -38,6 +38,9 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
               <li class="dropdown-header"><b>Agregar a playlist:</b></li>
               <hr class="m-0">
+              <li *ngIf="playlists.length === 0">
+                <span class="dropdown-item" >No hay playlist creadas. <a routerLink="/playlists/new">Crear una</a></span>
+              </li>
               <li *ngFor="let playlist of playlists">
                 <button class="dropdown-item" [ngClass]="{'disabled': isSongInPlaylist(song.id, playlist)}" type="button" (click)="addSong(song.id, playlist.id)">
                   {{playlist.name}}
