@@ -11,6 +11,16 @@ body, html {
   background-color: #f9f9f9;
 }
 
+.no-log-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* background-image: url('https://daily.jstor.org/wp-content/uploads/2023/01/good_times_with_bad_music_1050x700.jpg'); */
+  background-image: url('/assets/images/escuchando-musica.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
 #navbar {
   flex: 0 0 auto; /* Navbar no se expandirá */
 }

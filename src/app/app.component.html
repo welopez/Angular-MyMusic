@@ -1,6 +1,6 @@
-<div id="app-container">
+<div *ngIf="userEmail" id="app-container">
   <!-- Navbar -->
-  <nav *ngIf="userEmail" class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" routerLink="/"><h2>My Music</h2></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,9 +37,14 @@
   </div>
 
   <!-- Footer -->
-  <footer *ngIf="userEmail" class="footer py-3 bg-dark text-white">
+  <footer class="footer py-3 bg-dark text-white">
     <div class="container text-center">
       <span>© 2024 My Music por Walter Ezequiel Lopez.</span>
     </div>
   </footer>
+</div>
+
+<!-- Contenido para login y crear cuenta -->
+<div *ngIf="!userEmail" class="no-log-container">
+  <router-outlet></router-outlet>
 </div>

@@ -5,11 +5,11 @@ form {
   max-width: 500px;
   margin: 0 auto;
   margin-top: 10%;
-  padding: ;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #ffffff9e;
 }
 
 .container {
@@ -33,4 +33,8 @@ button {
   border: none;
   cursor: pointer;
   width: 100%;
+}
+
+.link{
+  font-size: 18px;
 }
