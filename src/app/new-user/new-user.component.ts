@@ -28,24 +28,24 @@ export class NewUserComponent implements OnInit {
       email: ['',Validators.required],
       password: ['',Validators.required],
       password2: ['',Validators.required]
-    });
-    // Agregar la validación personalizada
-    this.form.setValidators(this.passwordMatchValidator);
-  }
+    }, { validator: this.passwordMatchValidator });
+
+}
 
   ngOnInit(): void {
     // Añadir validadores para los campos requeridos
     this.form.get('email')?.setValidators([Validators.required, Validators.email]);
     this.form.get('password')?.setValidators([Validators.required]);
-    this.form.get('password2')?.setValidators([Validators.required]);
+    this.form.get('password2')?.setValidators([Validators.required, this.passwordMatchValidator]);
   }
 
   // Comprobar que las contraseñas coincidan
   passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    const password = control.get('password');
-    const password2 = control.get('password2');
+    const password = control.get('password')?.value;
+    const password2 = control.get('password2')?.value;
 
-    if (password && password2 && password.value !== password2.value) {
+    if (password !== password2) {
+      control.get('password2')?.setErrors({ passwordMismatch: true });
       return { 'passwordMismatch': true };
     }
 
@@ -89,7 +89,7 @@ export class NewUserComponent implements OnInit {
         },
         error => {
           console.error("Error al crear usuario:", error);
-          this.errorMessage = "Error al crear usuario. Por favor, intente nuevamente.";
+          this.errorMessage = "Error al crear usuario. " + error.error;
         }
       );
     }
