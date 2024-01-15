@@ -12,6 +12,7 @@ import { AddPlaylistComponent } from './Playlist/add-playlist/add-playlist.compo
 import { EditPlaylistComponent } from './Playlist/edit-playlist/edit-playlist.component';
 import { SongsComponent } from './songs/songs.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NewUserComponent } from './new-user/new-user.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PlaylistsComponent,
     AddPlaylistComponent,
     EditPlaylistComponent,
-    SongsComponent
+    SongsComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,

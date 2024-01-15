@@ -7,10 +7,12 @@ import { PlaylistsComponent } from './Playlist/playlists/playlists.component';
 import { AddPlaylistComponent } from './Playlist/add-playlist/add-playlist.component';
 import { EditPlaylistComponent } from './Playlist/edit-playlist/edit-playlist.component';
 import { SongsComponent } from './songs/songs.component';
+import { NewUserComponent } from './new-user/new-user.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/playlists', pathMatch: 'full' }, //{ path: '',component: PlaylistsComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
+    { path: 'user/new', component: NewUserComponent },
     { path: 'playlists', component: PlaylistsComponent, canActivate: [AuthGuard] },
     { path: 'playlists/new', component: AddPlaylistComponent, canActivate: [AuthGuard] },
     { path: 'playlists/:id', component: EditPlaylistComponent, canActivate: [AuthGuard] },
