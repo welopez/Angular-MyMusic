@@ -1,28 +1,30 @@
 <form [formGroup]="form" (ngSubmit)="login()" autocomplete="on">
-  <div class="container">
+  <div class="container d-flex flex-column">
 
-    <div class="text-center m-3">
-      <h2>Iniciar Sesión</h2>
-    </div>
+    <img class="mx-auto logo" src="/assets/images/logo.png" alt="Logo My Music">
+
+    <!-- <div class="text-center m-3">
+      <h4>Iniciar Sesión</h4>
+    </div> -->
 
     <fieldset>
-      <div class="form-field mt-3">
+      <div class="form-field">
         <label for="email"><b>Email:</b></label>
-        <input name="email" title="email" formControlName="email" type="text" required>
+        <input class="sombra-form" name="email" title="email" formControlName="email" type="text" required>
         <div *ngIf="form.get('email')?.invalid && (form.get('email')?.touched || formSubmitted)" class="error-message">
           {{ getErrorMessage('email') }}
         </div>
       </div>
       <div class="form-field mt-3">
         <label for="password"><b>Contraseña:</b></label>
-        <input name="password" title="contraseña" formControlName="password" type="password" required>
+        <input class="sombra-form" name="password" title="contraseña" formControlName="password" type="password" required>
         <div *ngIf="form.get('password')?.invalid && (form.get('password')?.touched || formSubmitted)" class="error-message">
           {{ getErrorMessage('password') }}
         </div>
       </div>
     </fieldset>
     <div class="form-buttons">
-      <button type="submit" class="btn btn-success mt-4">Login</button>
+      <button type="submit" class="btn btn-success mt-5 sombra-form">Ingresar</button>
     </div>
     <div *ngIf="errorMessage" class="text-center error-message mt-3">
       {{ errorMessage }}

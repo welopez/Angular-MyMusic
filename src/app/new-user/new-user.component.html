@@ -8,28 +8,28 @@
     <fieldset>
       <div class="form-field mt-3">
         <label for="email"><b>Email:</b></label>
-        <input name="email" title="email" formControlName="email" type="text" required>
+        <input class="sombra-form" name="email" title="email" formControlName="email" type="text" required>
         <div *ngIf="form.get('email')?.invalid && (form.get('email')?.touched || formSubmitted)" class="error-message">
           {{ getErrorMessage('email') }}
         </div>
       </div>
       <div class="form-field mt-3">
         <label for="password"><b>Contraseña:</b></label>
-        <input name="password" title="contraseña" formControlName="password" type="password" required>
+        <input class="sombra-form" name="password" title="contraseña" formControlName="password" type="password" required>
         <div *ngIf="form.get('password')?.invalid && (form.get('password')?.touched || formSubmitted)" class="error-message">
           {{ getErrorMessage('password') }}
         </div>
       </div>
       <div class="form-field mt-3">
         <label for="password2"><b>Repita contraseña:</b></label>
-        <input name="password2" title="contraseña" formControlName="password2" type="password" required>
+        <input class="sombra-form" name="password2" title="contraseña" formControlName="password2" type="password" required>
         <div *ngIf="form.get('password2')?.invalid && (form.get('password2')?.touched || formSubmitted)" class="error-message">
           {{ getErrorMessage('password2') }}
         </div>
       </div>
     </fieldset>
     <div class="form-buttons">
-      <button type="submit" class="btn btn-success my-4">Crear</button>
+      <button type="submit" class="btn btn-success mt-5 mb-4 sombra-form">Crear</button>
     </div>
     <div *ngIf="errorMessage" class="text-center error-message mb-3">
       {{ errorMessage }}
