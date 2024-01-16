@@ -61,8 +61,12 @@
     </div>
   </div>
 
+  <div *ngIf="!puedeEditar()" class="text-end">
+    <p class="text-muted"><i>Creador: {{playlist.userEmail}}</i></p>
+  </div>
+
   <div *ngIf="puedeEditar()" class="form-buttons">
-    <button type="button" (click)="goToSongs()" class="btn btn-outline-success mt-4 mb-2"><fa-icon [icon]="faPlus"></fa-icon><b> Agregar Canciones</b></button>
+    <button type="button" (click)="goToSongs()" class="btn btn-outline-success btn-shadow mt-4 mb-2"><fa-icon [icon]="faPlus"></fa-icon><b> Agregar Canciones</b></button>
   </div>
 
 </div>

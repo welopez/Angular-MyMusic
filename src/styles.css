@@ -16,6 +16,10 @@
 }
 
 .boton-redondo {
-    border-radius: 12px;
-    height: 25px;
+  border-radius: 12px;
+  height: 25px;
+}
+
+.btn-shadow {
+  box-shadow: 2px 2px;
 }

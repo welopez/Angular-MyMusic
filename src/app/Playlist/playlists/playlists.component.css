@@ -5,5 +5,10 @@
 
 .card {
   border: none;
-  box-shadow: 2px 2px 5px 1px #000000c2;
+  box-shadow: 2px 2px 3px 1px #000000c2;
+  text-shadow: 2px 2px 3px #00000094;
+}
+
+.card:hover {
+  box-shadow: 1px 1px 0px 0.5px #000000c2;
 }
