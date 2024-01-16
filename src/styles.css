@@ -11,6 +11,12 @@
   margin-top: 5px; /* Espacio superior entre el campo y el mensaje de error */
 }
 
+.success-message {
+  color: green; /* Color del texto del mensaje de error */
+  font-size: 14px; /* Tamaño del texto del mensaje de error */
+  margin-top: 5px; /* Espacio superior entre el campo y el mensaje de error */
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

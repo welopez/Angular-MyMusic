@@ -18,6 +18,7 @@ export class SongsComponent implements OnInit {
   form: FormGroup;
   limpiarFiltro: Boolean = false;
   errorMessage: string | null = null;
+  successMessage: string | null = null;
   faSearch = faMagnifyingGlass;
   faXmark = faXmark;
 
@@ -58,11 +59,12 @@ export class SongsComponent implements OnInit {
     }
   }
 
-  addSong(songId: DoubleRange, playlistId: DoubleRange): void {
-    if(playlistId != null && songId != null){
-      this.playlistService.addSong(playlistId.toString(), songId.toString()).subscribe(
+  addSong(song: Song, playlist: Playlist): void {
+    if(playlist != null && song != null){
+      this.playlistService.addSong(playlist.id.toString(), song.id.toString()).subscribe(
         () => {
-          console.log("Se agrego la cancion con id: " + songId + " a la playlist con id: " + playlistId);
+          console.log("Se agrego la cancion con id: " + song.id + " a la playlist con id: " + playlist.id);
+          this.successMessage = "Se agregó la canción " + song.name + " a " + playlist.name;
           this.getPlaylists();
         },
         error => {
@@ -77,6 +79,14 @@ export class SongsComponent implements OnInit {
 
   isSongInPlaylist(songId: DoubleRange, playlist: any): boolean {
     return playlist.songs.some((song: { id: DoubleRange; }) => song.id === songId);
+  }
+  
+  closeErrorMessage() {
+    this.errorMessage = null;
+  }
+
+  closeSuccessMessage() {
+    this.successMessage = null;
   }
 
 }

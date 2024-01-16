@@ -49,7 +49,7 @@
           <td>{{ song.name }}</td>
           <td>{{ song.author }}</td>
           <td>{{ song.genre }}</td>
-          <td *ngIf="puedeEditar()" class="text-center"><button type="button" name="button" class="btn btn-sm btn-danger" (click)="deleteSong(song.id)" title="Eliminar canción"><fa-icon [icon]="faTrash" title="Eliminar canción"></fa-icon></button></td>
+          <td *ngIf="puedeEditar()" class="text-center"><button type="button" name="button" class="btn btn-sm btn-danger" (click)="deleteSong(song)" title="Eliminar canción"><fa-icon [icon]="faTrash" title="Eliminar canción"></fa-icon></button></td>
         </tr>
       </tbody>
     </table>
@@ -71,6 +71,12 @@
 
 </div>
 
-<div *ngIf="errorMessage" class="error-message my-3">
-  {{ errorMessage }}
+<div *ngIf="errorMessage" class="error-message alert alert-danger position-fixed bottom-0 start-50 translate-middle-x mb-5 fade show text-center" role="alert">
+  <span class="mx-3">{{ errorMessage }}</span>
+  <button type="button" class="btn-close" (click)="closeErrorMessage()" aria-label="Close"></button>
+</div>
+
+<div *ngIf="successMessage" class="success-message alert alert-success position-fixed bottom-0 start-50 translate-middle-x mb-5 fade show text-center" role="alert">
+  <span class="mx-3">{{ successMessage }}</span>
+  <button type="button" class="btn-close" (click)="closeSuccessMessage()" aria-label="Close"></button>
 </div>

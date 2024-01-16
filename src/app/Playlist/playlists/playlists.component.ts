@@ -13,6 +13,7 @@ export class PlaylistsComponent implements OnInit {
 
   playlists: Playlist[] = [];
   errorMessage: string | null = null;
+  successMessage: string | null = null;
   faPlus = faPlus;
 
   constructor(private playlistService: PlaylistService, private router: Router) { }
@@ -48,4 +49,11 @@ export class PlaylistsComponent implements OnInit {
     imgElement.style.transition = 'opacity 0.3s ease';
   }
 
+  closeErrorMessage() {
+    this.errorMessage = null;
+  }
+
+  closeSuccessMessage() {
+    this.successMessage = null;
+  }
 }

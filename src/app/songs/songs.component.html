@@ -42,7 +42,7 @@
                 <span class="dropdown-item" >No hay playlist creadas. <a routerLink="/playlists/new">Crear una</a></span>
               </li>
               <li *ngFor="let playlist of playlists">
-                <button class="dropdown-item" [ngClass]="{'disabled': isSongInPlaylist(song.id, playlist)}" type="button" (click)="addSong(song.id, playlist.id)">
+                <button class="dropdown-item" [ngClass]="{'disabled': isSongInPlaylist(song.id, playlist)}" type="button" (click)="addSong(song, playlist)">
                   {{playlist.name}}
                 </button>
               </li>
@@ -60,6 +60,12 @@
   </div>
 </div>
 
-<div *ngIf="errorMessage" class="error-message my-3">
-  {{ errorMessage }}
+<div *ngIf="errorMessage" class="error-message alert alert-danger position-fixed bottom-0 start-50 translate-middle-x mb-5 fade show text-center" role="alert">
+  <span class="mx-3">{{ errorMessage }}</span>
+  <button type="button" class="btn-close" (click)="closeErrorMessage()" aria-label="Close"></button>
+</div>
+
+<div *ngIf="successMessage" class="success-message alert alert-success position-fixed bottom-0 start-50 translate-middle-x mb-5 fade show text-center" role="alert">
+  <span class="mx-3">{{ successMessage }}</span>
+  <button type="button" class="btn-close" (click)="closeSuccessMessage()" aria-label="Close"></button>
 </div>

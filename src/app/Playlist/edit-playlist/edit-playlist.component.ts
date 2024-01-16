@@ -5,6 +5,7 @@ import { PlaylistService } from '@app/playlist.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faTrashCan, faPenToSquare, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Song } from '@app/song';
 
 @Component({
   selector: 'app-edit-playlist',
@@ -18,6 +19,7 @@ export class EditPlaylistComponent implements OnInit {
   form: FormGroup;
   formSubmitted = false;
   errorMessage: string | null = null;
+  successMessage: string | null = null;
   @ViewChild('playlistNameInput', { static: false }) playlistNameInput!: ElementRef;
   faTrash = faTrashCan;
   faPen = faPenToSquare;
@@ -135,8 +137,6 @@ export class EditPlaylistComponent implements OnInit {
           () => {
             this.cargarPlaylist();
             console.log("Se agrego la cancion con id " + songId);
-            //this.router.navigate([this.returnUrl]);
-            //this.router.navigateByUrl('/');
           },
           error => {
             console.error("Error al agregar cancion: ", error);
@@ -148,19 +148,13 @@ export class EditPlaylistComponent implements OnInit {
       }
     }
 
-    deleteSong(songId: DoubleRange): void {
+    deleteSong(song: Song): void {
       if(this.playlistId != null){
-        this.playlistService.deleteSong(this.playlistId, songId.toString()).subscribe(
+        this.playlistService.deleteSong(this.playlistId, song.id.toString()).subscribe(
           () => {
-            // Encuentra la posición de la canción en el arreglo por su ID
-            const index = this.playlist?.songs.findIndex(song => song.id === songId);
-            // Si se encuentra, elimina la canción del arreglo
-            if (index !== undefined && index !== -1) {
-              this.playlist?.songs.splice(index, 1);
-            }
-            console.log("Se eliminó la cancion con id " + songId);
-            //this.router.navigate([this.returnUrl]);
-            //this.router.navigateByUrl('/');
+            this.cargarPlaylist();
+            console.log("Se eliminó la cancion con id " + song.id);
+            this.successMessage = "Se elimino la canción " + song.name + " de la playlist.";
           },
           error => {
             console.error("Error al eliminar cancion: ", error);
@@ -185,6 +179,14 @@ export class EditPlaylistComponent implements OnInit {
 
     goToSongs() {
       this.router.navigateByUrl(`/songs`);
+    }
+
+    closeErrorMessage() {
+      this.errorMessage = null;
+    }
+
+    closeSuccessMessage() {
+      this.successMessage = null;
     }
 
   }
