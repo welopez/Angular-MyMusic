@@ -9,6 +9,9 @@ body, html {
   flex-direction: column;
   height: 100vh;
   background-color: #f9f9f9;
+  background-image: url('/assets/images/bg-claro.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .no-log-container {
