@@ -118,8 +118,7 @@ export class EditPlaylistComponent implements OnInit {
         this.playlistService.deletePlaylist(this.playlistId).subscribe(
           () => {
             console.log("Playlist eliminada");
-            //this.router.navigate([this.returnUrl]);
-            this.router.navigateByUrl('/');
+            this.router.navigate(['/'], { state: { deletePlaylistMsg: "Se elimino la playlist: " + this.playlist?.name } });
           },
           error => {
             console.error("Error al eliminar playlist:", error);

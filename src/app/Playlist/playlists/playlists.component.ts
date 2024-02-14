@@ -20,6 +20,7 @@ export class PlaylistsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPlaylists();
+    this.successMessage = history.state.deletePlaylistMsg ?? null;
   }
 
   getPlaylists(): void {

@@ -24,7 +24,7 @@
       </div>
     </fieldset>
     <div class="form-buttons">
-      <button type="submit" class="btn btn-success mt-5 sombra-form">Ingresar</button>
+      <button id="btnIngresar" type="submit" class="btn btn-success mt-5 sombra-form">Ingresar</button>
     </div>
     <div *ngIf="errorMessage" class="text-center error-message mt-3">
       {{ errorMessage }}
@@ -34,3 +34,8 @@
     </div>
   </div>
 </form>
+
+<div *ngIf="successMessage" class="success-message alert alert-success position-fixed top-0 start-50 translate-middle-x mb-5 fade show text-center" role="alert">
+  <span class="mx-3">{{ successMessage }}</span>
+  <button type="button" class="btn-close" (click)="closeSuccessMessage()" aria-label="Close"></button>
+</div>

@@ -13,6 +13,7 @@ export class NewUserComponent implements OnInit {
   form: FormGroup;
   formSubmitted = false;
   errorMessage: string | null = null;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
@@ -25,32 +26,38 @@ export class NewUserComponent implements OnInit {
     }
 
     this.form = this.fb.group({
-      email: ['',Validators.required],
-      password: ['',Validators.required],
-      password2: ['',Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, this.passwordFormatValidator]],
+      password2: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });
-
-}
-
-  ngOnInit(): void {
-    // Añadir validadores para los campos requeridos
-    this.form.get('email')?.setValidators([Validators.required, Validators.email]);
-    this.form.get('password')?.setValidators([Validators.required]);
-    this.form.get('password2')?.setValidators([Validators.required, this.passwordMatchValidator]);
   }
 
-  // Comprobar que las contraseñas coincidan
-  passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    const password = control.get('password')?.value;
-    const password2 = control.get('password2')?.value;
+  ngOnInit(): void {}
 
-    if (password !== password2) {
-      control.get('password2')?.setErrors({ passwordMismatch: true });
-      return { 'passwordMismatch': true };
+  // Comprobar que la contraseña cumpla el formato
+  passwordFormatValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const password = control.value;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)([A-Za-z\d$@$!%*?& ]|[^ ]){8,15}$/;
+
+    if (!passwordRegex.test(password)) {
+      return { 'passwordBadFormat': true };
     }
 
     return null;
   }
+
+  // Comprobar que las contraseñas coincidan
+ passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
+   const password = control.get('password')?.value;
+   const password2 = control.get('password2')?.value;
+
+   if (password2 != null && password2 != "" && password !== password2) {
+     control.get('password2')?.setErrors({ passwordMismatch: true });
+     return { 'passwordMismatch': true };
+   }
+
+   return null;
+ }
 
   // Método para obtener mensajes de error
   getErrorMessage(controlName: string): string {
@@ -62,6 +69,10 @@ export class NewUserComponent implements OnInit {
 
     if (control?.hasError('email')) {
       return 'Ingrese un correo electrónico válido.';
+    }
+
+    if (control?.hasError('passwordBadFormat')) {
+      return 'La contraseña debe contener al menos una letra minúscula, una letra mayúscula, un dígito y tener una longitud entre 8 y 15 caracteres.';
     }
 
     if (control?.hasError('passwordMismatch')) {
@@ -85,7 +96,7 @@ export class NewUserComponent implements OnInit {
       .subscribe(
         () => {
           console.log("Usuario creado");
-          this.router.navigateByUrl('/login');
+          this.router.navigate(['/login'], { state: { registrationSuccess: true } });
         },
         error => {
           console.error("Error al crear usuario:", error);

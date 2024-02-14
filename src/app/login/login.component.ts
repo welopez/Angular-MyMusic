@@ -13,7 +13,9 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   returnUrl: string;
   formSubmitted = false;
+  registrationSuccess: boolean = false;
   errorMessage: string | null = null;
+  successMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
     // Añadir validadores para los campos requeridos
     this.form.get('email')?.setValidators([Validators.required, Validators.email]);
     this.form.get('password')?.setValidators([Validators.required]);
+    this.successMessage = history.state.registrationSuccess ? "Usuario registrado exitosamente. Inicie sesión." : null;
   }
 
   // Método para obtener mensajes de error
@@ -80,6 +83,10 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+  }
+
+  closeSuccessMessage() {
+    this.successMessage = null;
   }
 
 }
