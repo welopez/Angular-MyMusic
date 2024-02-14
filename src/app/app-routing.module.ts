@@ -9,14 +9,15 @@ import { EditPlaylistComponent } from './Playlist/edit-playlist/edit-playlist.co
 import { SongsComponent } from './songs/songs.component';
 import { NewUserComponent } from './new-user/new-user.component';
 
+const preTitle = 'MyMusic | '
 const routes: Routes = [
     { path: '', redirectTo: '/playlists', pathMatch: 'full' }, //{ path: '',component: PlaylistsComponent, canActivate: [AuthGuard] },
-    { path: 'login', component: LoginComponent },
-    { path: 'user/new', component: NewUserComponent },
-    { path: 'playlists', component: PlaylistsComponent, canActivate: [AuthGuard] },
-    { path: 'playlists/new', component: AddPlaylistComponent, canActivate: [AuthGuard] },
-    { path: 'playlists/:id', component: EditPlaylistComponent, canActivate: [AuthGuard] },
-    { path: 'songs', component: SongsComponent, canActivate: [AuthGuard] },
+    { path: 'login', component: LoginComponent, title: preTitle + 'Iniciar Sesión' },
+    { path: 'user/new', component: NewUserComponent, title: preTitle + 'Nuevo Usuario' },
+    { path: 'playlists', component: PlaylistsComponent, canActivate: [AuthGuard], title: preTitle + 'Playlists' },
+    { path: 'playlists/new', component: AddPlaylistComponent, canActivate: [AuthGuard], title: preTitle + 'Nueva Playlist' },
+    { path: 'playlists/:id', component: EditPlaylistComponent, canActivate: [AuthGuard] , title: preTitle + 'Editar Playlist'},
+    { path: 'songs', component: SongsComponent, canActivate: [AuthGuard] , title: preTitle + 'Canciones'},
     // otherwise redirect to home
     { path: '**', redirectTo: '/playlists' }
 ];
